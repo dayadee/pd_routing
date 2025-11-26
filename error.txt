@@ -1,0 +1,42 @@
+❯ ./fullmapping.sh
+Scanning ap-south-1 ...
+jq: parse error: Invalid numeric literal at line 1, column 957
+jq: parse error: Invalid numeric literal at line 1, column 957
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 957
+jq: parse error: Invalid numeric literal at line 1, column 957
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 955
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 957
+jq: parse error: Invalid numeric literal at line 1, column 957
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 957
+jq: parse error: Invalid numeric literal at line 1, column 957
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 955
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 956
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 955
+./fullmapping.sh: line 21: [: : integer expression expected
+jq: parse error: Invalid numeric literal at line 1, column 955
+jq: parse error: Invalid numeric literal at line 1, column 
