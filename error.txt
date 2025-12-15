@@ -1,18 +1,3 @@
-Status: Succeeded
-Test Event Name: CloudWatch_Test
-
-Response:
-{
-  "statusCode": 500,
-  "body": "HTTP Error 404: Not Found"
-}
-
-The area below shows the last 4 KB of the execution log.
-
-Function Logs:
-START RequestId: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83 Version: $LATEST
-[ERROR]	2025-12-15T03:51:59.209Z	9723468b-5ebd-4ec1-8b23-7b2d24a42f83	Slack send failed: HTTP Error 404: Not Found
-END RequestId: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83
-REPORT RequestId: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83	Duration: 476.47 ms	Billed Duration: 714 ms	Memory Size: 128 MB	Max Memory Used: 55 MB	Init Duration: 236.86 ms
-
-Request ID: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83
+curl -X POST -H 'Content-type: application/json' \
+--data '{"text":"Slack webhook test"}' \
+https://hooks.slack.com/services/XXX/YYY/ZZZ
