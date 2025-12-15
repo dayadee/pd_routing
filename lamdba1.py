@@ -5,41 +5,44 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/XXX/YYY/ZZZ"  # move to Secrets Manager in prod
+SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/XXX/YYY/ZZZ"
 
 
-def kv_row(key, value):
-    """Helper to format key-value rows like a table"""
+def field(label, value):
     return {
         "type": "mrkdwn",
-        "text": f"*{key}:*\n{value}"
+        "text": f"*{label}:*\n{value}"
     }
 
 
 def lambda_handler(event, context):
 
+    # ---- SAFE EXTRACTION ----
     details = event.get("details", {})
     trigger = details.get("Trigger", {})
 
-    alarm_name = details.get("AlarmName", "Unknown")
-    severity = alarm_name.split(":")[0] if ":" in alarm_name else "INFO"
-    state = details.get("NewStateValue", "UNKNOWN")
+    alarm_name = details.get("AlarmName", "Unknown Alarm")
+    alarm_state = details.get("NewStateValue", "UNKNOWN")
     reason = details.get("NewStateReason", "N/A")
 
     metric = trigger.get("MetricName", "N/A")
     threshold = trigger.get("Threshold", "N/A")
-    comparison = trigger.get("ComparisonOperator", "N/A")
+    operator = trigger.get("ComparisonOperator", "N/A")
 
     dimensions = trigger.get("Dimensions", [])
-    cluster_name = next(
-        (d["value"] for d in dimensions if d["name"] == "Cluster Name"),
+    cluster = next(
+        (d.get("value") for d in dimensions if d.get("name") == "Cluster Name"),
         "N/A"
     )
 
+    severity = alarm_name.split(":")[0] if ":" in alarm_name else "INFO"
+    region = details.get("Region", "N/A")
+    account = details.get("AWSAccountId", "N/A")
+    time = details.get("StateChangeTime", "N/A")
+
     alarm_url = event.get("client_url", "N/A")
 
-    header_text = f"🚨 *{severity} INCIDENT – CloudWatch Alarm Triggered*"
-
+    # ---- SLACK MESSAGE ----
     slack_payload = {
         "username": "AWS-Incident-Bot",
         "icon_emoji": ":rotating_light:",
@@ -48,20 +51,20 @@ def lambda_handler(event, context):
                 "type": "header",
                 "text": {
                     "type": "plain_text",
-                    "text": header_text
+                    "text": f"🚨 {severity} INCIDENT – CloudWatch Alarm"
                 }
             },
             {
                 "type": "section",
                 "fields": [
-                    kv_row("Alarm Name", alarm_name),
-                    kv_row("State", state),
-                    kv_row("Metric", metric),
-                    kv_row("Cluster", cluster_name),
-                    kv_row("Region", details.get("Region", "N/A")),
-                    kv_row("AWS Account", details.get("AWSAccountId", "N/A")),
-                    kv_row("Threshold", f"{comparison} {threshold}"),
-                    kv_row("Time", details.get("StateChangeTime", "N/A")),
+                    field("Alarm", alarm_name),
+                    field("State", alarm_state),
+                    field("Metric", metric),
+                    field("Cluster", cluster),
+                    field("Region", region),
+                    field("AWS Account", account),
+                    field("Threshold", f"{operator} {threshold}"),
+                    field("Time", time),
                 ]
             },
             {
@@ -76,27 +79,19 @@ def lambda_handler(event, context):
                 "elements": [
                     {
                         "type": "button",
+                        "style": "danger",
                         "text": {
                             "type": "plain_text",
                             "text": "Open Alarm in AWS"
                         },
-                        "url": alarm_url,
-                        "style": "danger"
-                    }
-                ]
-            },
-            {
-                "type": "context",
-                "elements": [
-                    {
-                        "type": "mrkdwn",
-                        "text": "📌 Please follow the IRG mentioned in the alarm description if applicable."
+                        "url": alarm_url
                     }
                 ]
             }
         ]
     }
 
+    # ---- SEND TO SLACK ----
     try:
         req = urllib.request.Request(
             SLACK_WEBHOOK_URL,
@@ -104,16 +99,17 @@ def lambda_handler(event, context):
             headers={"Content-Type": "application/json"}
         )
 
-        with urllib.request.urlopen(req) as response:
-            logger.info("Slack notification sent successfully")
-            return {
-                "statusCode": 200,
-                "body": json.dumps("Slack notification sent")
-            }
+        urllib.request.urlopen(req)
+        logger.info("Slack message sent")
+
+        return {
+            "statusCode": 200,
+            "body": "Slack notification sent"
+        }
 
     except Exception as e:
-        logger.error(f"Failed to send Slack message: {e}")
+        logger.error(f"Slack send failed: {e}")
         return {
             "statusCode": 500,
-            "body": json.dumps(str(e))
+            "body": str(e)
         }
