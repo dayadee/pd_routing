@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     """
     # Define your Slack Webhook URL
     # Remember to secure this URL in a proper secrets manager for production use
-    slack_url = "https://hooks.slack.com/services/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"
+    slack_url = "https://hooks.slack.com/"
 
     # The 'event' parameter will automatically contain your provided JSON data
     event_summary = f"Received AWS Scheduled Event:\n*Rule ARN:* {event['resources'][0]}\n*Region:* {event['region']}\n*Time:* {event['time']}\n\n*Full Details:*\n```\n{json.dumps(event, indent=4)}\n```"
