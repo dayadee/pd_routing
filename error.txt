@@ -1,42 +1,25 @@
-❯ ./fullmapping.sh
-Scanning ap-south-1 ...
-jq: parse error: Invalid numeric literal at line 1, column 957
-jq: parse error: Invalid numeric literal at line 1, column 957
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 957
-jq: parse error: Invalid numeric literal at line 1, column 957
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 955
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 957
-jq: parse error: Invalid numeric literal at line 1, column 957
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 957
-jq: parse error: Invalid numeric literal at line 1, column 957
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 955
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 956
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 955
-./fullmapping.sh: line 21: [: : integer expression expected
-jq: parse error: Invalid numeric literal at line 1, column 955
-jq: parse error: Invalid numeric literal at line 1, column 
+Status: Failed
+Test Event Name: CloudWatch_Test
+
+Response:
+{
+  "errorMessage": "'resources'",
+  "errorType": "KeyError",
+  "requestId": "ce4e9856-8a47-45ee-9a39-e80c257e0a64",
+  "stackTrace": [
+    "  File \"/var/task/lambda_function.py\", line 18, in lambda_handler\n    event_summary = f\"Received AWS Scheduled Event:\\n*Rule ARN:* {event['resources'][0]}\\n*Region:* {event['region']}\\n*Time:* {event['time']}\\n\\n*Full Details:*\\n```\\n{json.dumps(event, indent=4)}\\n```\"\n"
+  ]
+}
+
+The area below shows the last 4 KB of the execution log.
+
+Function Logs:
+START RequestId: ce4e9856-8a47-45ee-9a39-e80c257e0a64 Version: $LATEST
+[ERROR] KeyError: 'resources'
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 18, in lambda_handler
+    event_summary = f"Received AWS Scheduled Event:\n*Rule ARN:* {event['resources'][0]}\n*Region:* {event['region']}\n*Time:* {event['time']}\n\n*Full Details:*\n```\n{json.dumps(event, indent=4)}\n```"
+END RequestId: ce4e9856-8a47-45ee-9a39-e80c257e0a64
+REPORT RequestId: ce4e9856-8a47-45ee-9a39-e80c257e0a64	Duration: 26.21 ms	Billed Duration: 27 ms	Memory Size: 128 MB	Max Memory Used: 51 MB
+
+Request ID: ce4e9856-8a47-45ee-9a39-e80c257e0a64
