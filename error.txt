@@ -1,25 +1,18 @@
-Status: Failed
+Status: Succeeded
 Test Event Name: CloudWatch_Test
 
 Response:
 {
-  "errorMessage": "'resources'",
-  "errorType": "KeyError",
-  "requestId": "ce4e9856-8a47-45ee-9a39-e80c257e0a64",
-  "stackTrace": [
-    "  File \"/var/task/lambda_function.py\", line 18, in lambda_handler\n    event_summary = f\"Received AWS Scheduled Event:\\n*Rule ARN:* {event['resources'][0]}\\n*Region:* {event['region']}\\n*Time:* {event['time']}\\n\\n*Full Details:*\\n```\\n{json.dumps(event, indent=4)}\\n```\"\n"
-  ]
+  "statusCode": 500,
+  "body": "HTTP Error 404: Not Found"
 }
 
 The area below shows the last 4 KB of the execution log.
 
 Function Logs:
-START RequestId: ce4e9856-8a47-45ee-9a39-e80c257e0a64 Version: $LATEST
-[ERROR] KeyError: 'resources'
-Traceback (most recent call last):
-  File "/var/task/lambda_function.py", line 18, in lambda_handler
-    event_summary = f"Received AWS Scheduled Event:\n*Rule ARN:* {event['resources'][0]}\n*Region:* {event['region']}\n*Time:* {event['time']}\n\n*Full Details:*\n```\n{json.dumps(event, indent=4)}\n```"
-END RequestId: ce4e9856-8a47-45ee-9a39-e80c257e0a64
-REPORT RequestId: ce4e9856-8a47-45ee-9a39-e80c257e0a64	Duration: 26.21 ms	Billed Duration: 27 ms	Memory Size: 128 MB	Max Memory Used: 51 MB
+START RequestId: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83 Version: $LATEST
+[ERROR]	2025-12-15T03:51:59.209Z	9723468b-5ebd-4ec1-8b23-7b2d24a42f83	Slack send failed: HTTP Error 404: Not Found
+END RequestId: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83
+REPORT RequestId: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83	Duration: 476.47 ms	Billed Duration: 714 ms	Memory Size: 128 MB	Max Memory Used: 55 MB	Init Duration: 236.86 ms
 
-Request ID: ce4e9856-8a47-45ee-9a39-e80c257e0a64
+Request ID: 9723468b-5ebd-4ec1-8b23-7b2d24a42f83
