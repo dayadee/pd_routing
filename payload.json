@@ -1,0 +1,47 @@
+{
+  "client": "AWS Console",
+  "client_url": "https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#s=Alarms&alarm=P1:PRD:KAFKA:FKAFKA:PRD-MSK-FKAFKA-A:OfflinePartitionsCount",
+  "contexts": null,
+  "description": "Sum OfflinePartitionsCount GreaterThanThreshold 0.0",
+  "event_type": "trigger",
+  "incident_key": "P1:PRD:KAFKA:FKAFKA:PRD-MSK-FKAFKA-A:OfflinePartitionsCount",
+  "service_key": "3976b660606d4609d0232426feae0810",
+  "details": {
+    "AWSAccountId": "833376745199",
+    "AlarmActions": [
+      "arn:aws:sns:us-east-1:833376745199:acr-data-msk"
+    ],
+    "AlarmArn": "arn:aws:cloudwatch:us-east-1:833376745199:alarm:P1:PRD:KAFKA:FKAFKA:PRD-MSK-FKAFKA-A:OfflinePartitionsCount",
+    "AlarmConfigurationUpdatedTimestamp": "2024-10-24T07:49:06.809+0000",
+    "AlarmDescription": "Alarm if OfflinePartitionsCount is greater than 0 for MSK cluster. IRG: https://confluence.sec.samsung.net/display/DMSAC/MSK+IRG",
+    "AlarmName": "P1:PRD:KAFKA:FKAFKA:PRD-MSK-FKAFKA-A:OfflinePartitionsCount",
+    "InsufficientDataActions": [],
+    "NewStateReason": "Threshold Crossed: 1 datapoint [2.0 (08/12/25 09:36:00)] was greater than the threshold (0.0).",
+    "NewStateValue": "ALARM",
+    "OKActions": [
+      "arn:aws:sns:us-east-1:833376745199:acr-data-msk"
+    ],
+    "OldStateValue": "OK",
+    "Region": "US East (N. Virginia)",
+    "StateChangeTime": "2025-12-08T09:37:34.187+0000",
+    "Trigger": {
+      "ComparisonOperator": "GreaterThanThreshold",
+      "Dimensions": [
+        {
+          "name": "Cluster Name",
+          "value": "PRD-MSK-FKAFKA-A"
+        }
+      ],
+      "EvaluateLowSampleCountPercentile": "",
+      "EvaluationPeriods": 1,
+      "MetricName": "OfflinePartitionsCount",
+      "Namespace": "AWS/Kafka",
+      "Period": 60,
+      "Statistic": "SUM",
+      "StatisticType": "Statistic",
+      "Threshold": 0,
+      "TreatMissingData": "breaching",
+      "Unit": null
+    }
+  }
+}
